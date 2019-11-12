@@ -48,7 +48,7 @@ export class ProductListComponent implements OnInit {
 
   constructor() {
     this.filteredProducts = this.products;
-    this.listFilter= 'cart';
+    this.listFilter = 'cart';
   }
 
   toggleImage(): void {
