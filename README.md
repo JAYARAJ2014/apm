@@ -25,3 +25,24 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+
+## Adding Routing
+
+Define base element
+Add RouterModule
+ -- Add each route (RouterModule.forRoot). Order Matters here
+
+ path: Url segment, no leading slash, '' for default and 
+'**' for wild card router
+
+component  reference to component itself.
+`
+  RouterModule.forRoot([
+      {path: 'products', component: ProductListComponent},
+      {path: 'products/:id', component: ProductDetailComponent},
+      {path: 'welcome', component: WelcomeComponent},
+      {path: '', redirectTo: 'welcome', pathMatch: 'full'},
+      {path: '**', redirectTo: 'welcome', pathMatch: 'full' }
+    ])
+  `
