@@ -3,7 +3,6 @@ import { IProduct } from './product';
 import { ProductService } from './product.service';
 
 @Component({
-  selector: 'pm-products',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
@@ -15,6 +14,7 @@ export class ProductListComponent implements OnInit {
   imageMargin = 2;
   showImage = false;
   _listFilter: string;
+  errorMessage: string;
   get listFilter(): string {
       return this._listFilter;
   }
@@ -36,8 +36,12 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
       // life cycle hook
-      this.products = this.productService.getProducts();
-      this.filteredProducts = this.products;
+      this.productService.getProducts().subscribe({
+        next: data => {this.products = data,
+        this.filteredProducts = this.products;
+      },
+      error: err => this.errorMessage = err
+    }) ;
   }
 
   performFilter(filterBy: string): IProduct[] {
